@@ -29,9 +29,11 @@ function App() {
   const location = useLocation();
   const [stockSymbol, setStockSymbol] = useState("");
 
-  const isInitialStage = location.pathname === "/" || location.pathname === "/signup" || location.pathname === "/reset-password" || location.pathname === "/create-profile" || location.pathname === "/verify-email-message";
+  //const isInitialStage = location.pathname === "/" || location.pathname === "/signup" || location.pathname === "/reset-password" || location.pathname === "/create-profile" || location.pathname === "/verify-email-message";
 
   const { user } = useUserAuth();
+
+  const isInitialStage = !user;
 
   const checkMarketOpen = () => {
     const now = new Date();
