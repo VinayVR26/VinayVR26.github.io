@@ -1,0 +1,17 @@
+Here are some of the commonly used properties and methods available in the event object:
+
+e.target: Refers to the element that triggered the event. For example, if a button is clicked, e.target will refer to the button element.
+
+e.currentTarget: Refers to the element that the event listener is attached to. It might be different from e.target if the event propagates through multiple elements.
+
+e.type: Contains the type of event that occurred (e.g., "click", "submit", "keydown").
+
+e.preventDefault(): A method used to prevent the default behavior of the event. For example, in a form submission event, calling e.preventDefault() prevents the form from being submitted in the usual way, which allows you to handle the form submission manually.
+
+e.stopPropagation(): A method used to stop event propagation, preventing the event from triggering additional event handlers on ancestor elements.
+
+Various properties specific to each type of event (e.g., e.keyCode for keyboard events, e.clientX and e.clientY for mouse events).
+
+When you define an event handler function, such as const handleClick = (e) => { /* ... */ }, you can access and use the event object (e) inside the function to examine the details of the event and perform specific actions based on that information. For example, you can use e.target to get information about the element that was clicked and then update the state or perform other actions accordingly.
+
+Keep in mind that the specific properties and methods available in the event object may vary depending on the type of event being handled and the browser's implementation of the event system.
