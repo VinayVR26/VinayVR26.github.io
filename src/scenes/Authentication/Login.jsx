@@ -123,10 +123,10 @@ const Login = () => {
       </div>
       {/* Link to the signup page */}
       <div className="p-4 box mt-3 text-center">
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Don't have an account? <Link to="/signup"><div className="clickableText">Sign up</div></Link>
       </div>
       <div className="p-4 box mt-3 text-center">
-        Forgot your password? <Link to="/reset-password">Reset password</Link>
+        Forgot your password? <Link to="/reset-password"><div className="clickableText">Reset password</div></Link>
       </div>
     </>
   );

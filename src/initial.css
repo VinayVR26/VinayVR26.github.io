@@ -9,6 +9,10 @@
 }
 
 /* Style for elements with the 'box' class inside the 'initial-stage' div */
+
+.initial-stage-container .mb-3 {
+  font-weight: bold;
+}
 .initial-stage-container .box {
   border: 0px solid #dfdfdf;
   background-color: #5e7dc5;
@@ -30,6 +34,30 @@
   height: 40px !important;
   line-height: 40px !important;
   font-size: 15px !important;
+}
+
+.initial-stage-container .mb-3 {
+  font-size: x-large;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  
+}
+
+.initial-stage-container .p-4.mt-3.text-center {
+  font-weight: bold;
+  color: #000;
+}
+
+.initial-stage-container .p-4.box.mt-3.text-center .clickableText {
+  display: inline;
+  margin: 0 1px;
+  color: #000000;
+  transition: color 0.3s;
+}
+
+.initial-stage-container .p-4.box.mt-3.text-center .clickableText:hover {
+  color: #afacac; /* Color on hover */
 }
 
 

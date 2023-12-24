@@ -39,10 +39,10 @@ function App() {
   
     const currentMonth = now.getUTCMonth() + 1;
   
-    if ((currentHourSGT <= 4.5 || currentHourSGT >= 21.5) && (currentMonth >= 4 && currentMonth <= 9)) {
+    if ((currentHourSGT <= 4.5 || currentHourSGT >= 21.5) && (currentMonth >= 4 && currentMonth <= 9) && now.getDay() != 0) {
       return true;
   
-    } else if ((currentHourSGT <= 5.5 || currentHourSGT >= 21.5) && (currentMonth >= 10 || currentMonth <= 3)) {
+    } else if ((currentHourSGT <= 5.5 || currentHourSGT >= 21.5) && (currentMonth >= 10 || currentMonth <= 3) && now.getDay() != 0) {
       return true;
     };
   
