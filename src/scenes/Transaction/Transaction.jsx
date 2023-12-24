@@ -444,7 +444,7 @@ const Transaction = ({ onReview }) => {
           <Form.Label>Account</Form.Label>
           <Form.Control type="text" value={username} readOnly />
         </Form.Group>
-        {isMarketOpen() && (
+        {(isMarketOpen() || !isMarketOpen()) && (
           <Button variant="contained" onClick={handleReview}>Review</Button>
         )}
       </Form>
