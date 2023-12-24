@@ -42,10 +42,12 @@ const Overview = ({ symbol, currency, filter }) => {
     let endDate = new Date(now); // today's date
 
     if (filter === "1D") {
-      if (startDate.getDay() === 1 || startDate.getDay() === 0) {
-        startDate.setDate(now.getDate() - 2); // 2 days ago date
+      if (startDate.getDay() === 0) {
+        startDate.setDate(now.getDate() - 2);
+      } else if (startDate.getDay() === 1){
+        startDate.setDate(now.getDate() - 3)
       } else {
-        startDate.setDate(now.getDate() - 1); // yesterday's date
+        startDate.setDate(now.getDate() - 1);
       }
     } else if (filter === "1W") {
       startDate.setDate(now.getDate() - 7);

@@ -76,7 +76,7 @@
 }
 
 .initial-stage-container .gender-container Form.Label {
-  color: #000; /* Make only the label black */
+  color: #000;
 }
 
 /* Style for elements inside the 'g-btn' class within 'initial-stage' div */
