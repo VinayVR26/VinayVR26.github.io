@@ -78,7 +78,7 @@ const Signup = () => {
               )}
             </Form.Group>
     
-            <Form.Group className="mb-3" controlId="formBasicShowPasswords">
+            <Form.Group className="showPassword" controlId="formBasicShowPasswords">
               <Form.Check
                 type="checkbox"
                 label="Show passwords"
@@ -94,7 +94,7 @@ const Signup = () => {
           </Form>
         </div>
       <div className="p-4 box mt-3 text-center">
-        Already have an account? <Link to="/">Log In</Link>
+        Already have an account? <Link to="/"><div className="clickableText">Log In</div></Link>
       </div>
     </>
   );

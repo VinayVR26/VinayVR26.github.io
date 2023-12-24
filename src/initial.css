@@ -57,7 +57,17 @@
 }
 
 .initial-stage-container .p-4.box.mt-3.text-center .clickableText:hover {
-  color: #afacac; /* Color on hover */
+  color: #afacac;
+}
+
+.initial-stage-container .showPassword {
+  font-weight: bold;
+  color: #000;
+}
+.initial-stage-container .reset-password-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 

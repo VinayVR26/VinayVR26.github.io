@@ -24,26 +24,27 @@ const PasswordReset = () => {
   };
 
   return (
-    <div>
-      <h2>Reset Password</h2>
+    <div className="p-4 box">
+      <h2 className="mb-3">Reset Password</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       {message && <Alert variant="success">{message}</Alert>}
       <Form onSubmit={handleResetPassword}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Control
             type="email"
-            placeholder="Enter email"
+            placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
+        <div className="reset-password-container">
         <Button variant="primary" type="submit">
           Reset Password
         </Button>
+        </div>
       </Form>
       <div className="p-4 box mt-3 text-center">
-        Back to Log in page <Link to="/">Log In</Link>
+        Back to Log in page <Link to="/"><div className="clickableText">Log In</div></Link>
       </div>
     </div>
   );
