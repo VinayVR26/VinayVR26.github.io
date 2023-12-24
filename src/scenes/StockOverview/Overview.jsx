@@ -44,8 +44,8 @@ const Overview = ({ symbol, currency, filter }) => {
     if (filter === "1D") {
       if (startDate.getDay() === 0) {
         startDate.setDate(now.getDate() - 2);
-      } else if (startDate.getDay() === 1){
-        startDate.setDate(now.getDate() - 3)
+      } else if (startDate.getDay() === 1) {
+        startDate.setDate(now.getDate() - 3);
       } else {
         startDate.setDate(now.getDate() - 1);
       }
@@ -77,7 +77,7 @@ const Overview = ({ symbol, currency, filter }) => {
         endDateValue
       );
 
-
+      console.log("INFO", info);
       let lastIndex = (info.c).length - 1
       let endPrice = parseFloat(info.c[lastIndex].toFixed(2)); // most recent price
       let startPrice = parseFloat(info.c[0].toFixed(2)); // most oldest price
