@@ -381,11 +381,11 @@ const Transaction = ({ onReview }) => {
   
     const currentMonth = now.getUTCMonth() + 1; // Adding 1 to get month in range 1-12
   
-    if ((currentHourSGT <= 4.5 || currentHourSGT >= 21.5) && (currentMonth >= 4 && currentMonth <= 9)) {
+    if ((currentHourSGT <= 4.5 || currentHourSGT >= 21.5) && (currentMonth >= 4 && currentMonth <= 9) && now.getDay() != 0) {
       // Market open for April to September between 9:30 PM to 4:30 AM (SGT)
       return true;
   
-    } else if ((currentHourSGT <= 5.5 || currentHourSGT >= 21.5) && (currentMonth >= 10 || currentMonth <= 3)) {
+    } else if ((currentHourSGT <= 5.5 || currentHourSGT >= 21.5) && (currentMonth >= 10 || currentMonth <= 3) && now.getDay() != 0) {
       // Market open for October to March between 10:30 PM to 5:30 AM (SGT)
       return true;
     };

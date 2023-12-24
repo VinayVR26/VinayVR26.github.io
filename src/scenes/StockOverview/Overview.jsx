@@ -17,10 +17,10 @@ const Overview = ({ symbol, currency, filter }) => {
     
     let isMarketOpen = false;
 
-    if ((currentHourSGT <= 4 || currentHourSGT >= 21.5) && (currentMonth >= 4 && currentMonth <= 9)) {
+    if ((currentHourSGT <= 4 || currentHourSGT >= 21.5) && (currentMonth >= 4 && currentMonth <= 9) && now.getDay() != 0) {
       // Market open for April to September between 4:30 PM to 9:30 AM (SGT)
       isMarketOpen = true;
-    } else if ((currentHourSGT <= 5 || currentHourSGT >= 21.5) && (currentMonth >= 10 || currentMonth <= 3)) {
+    } else if ((currentHourSGT <= 5 || currentHourSGT >= 21.5) && (currentMonth >= 10 || currentMonth <= 3) && now.getDay() != 0) {
       // Market open for October to March between 5:30 PM to 10:30 AM (SGT)
       isMarketOpen = true;
     }
@@ -29,13 +29,13 @@ const Overview = ({ symbol, currency, filter }) => {
   }
 
 
-  const calculateTimestampsForFilter = (filter) => {
+  const calculateDateValueForFilter = (filter) => {
     const now = new Date();
     let startDate = new Date(now);
     let endDate = new Date(now); // today's date
 
     if (filter === "1D") {
-      if (startDate.getDay() === 1) { // Monday
+      if (startDate.getDay() === 1 || startDate.getDay() === 0) {
         startDate.setDate(now.getDate() - 2); // 2 days ago date
       } else {
         startDate.setDate(now.getDate() - 1); // yesterday's date
@@ -48,24 +48,24 @@ const Overview = ({ symbol, currency, filter }) => {
       startDate.setFullYear(now.getFullYear() - 1);
     }
 
-    const startTimestampUnix = Math.floor(startDate.getTime() / 1000);
-    const endTimestampUnix = Math.floor(endDate.getTime() / 1000);
-    return { startTimestampUnix, endTimestampUnix };
+    const startDateValue = formatDate(startDate)
+    const endDateValue = formatDate(endDate)
+    return { startDateValue, endDateValue };
   };
 
 
-  // Fetch historical data using appropriate timestamps and resolution
+  // Fetch historical data using appropriate dates and resolution
   const fetchAndSetData = async () => {
     
-    const { startTimestampUnix, endTimestampUnix } = calculateTimestampsForFilter(filter);
+    const { startDateValue, endDateValue } = calculateDateValueForFilter(filter);
     let resolution = "D"; // Default to daily resolution
 
     try {
       const info = await fetchHistoricalData(
         stockSymbol,
         resolution,
-        startTimestampUnix,
-        endTimestampUnix
+        startDateValue,
+        endDateValue
       );
 
 
@@ -81,14 +81,14 @@ const Overview = ({ symbol, currency, filter }) => {
           const quote = await fetchQuote(stockSymbol);
           setQuote((prevQuote) => ({
             ...prevQuote,
-            pc: quote.c,
+            pc: quote.c.toFixed(2),
             d: quote.d.toFixed(2),
             dp: quote.dp.toFixed(2),
           }));
         } else {
           setQuote((prevQuote) => ({
             ...prevQuote,
-            pc: endPrice,
+            pc: endPrice.toFixed(2),
             d: (endPrice - startPrice).toFixed(2),
             dp: parseFloat(((endPrice - startPrice) / startPrice) * 100).toFixed(2),
           }));
