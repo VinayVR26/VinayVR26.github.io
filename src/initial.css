@@ -70,6 +70,11 @@
   align-items: center;
 }
 
+.initial-stage-container .gender-container {
+  font-size:small;
+  color: #000;
+}
+
 
 /* Style for elements inside the 'g-btn' class within 'initial-stage' div */
 .initial-stage-container .g-btn > div,
