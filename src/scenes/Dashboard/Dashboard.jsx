@@ -564,54 +564,57 @@ const Dashboard = () => {
                 Favourites
               </Typography>
             </Box>
-            {favourites.map((stock, i) => (
-              <Box
-                key={`${stock}-${i}`}
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                borderBottom={`4px solid ${colors.primary[500]}`}
-                p="15px"
-              >
-                <Box>
-                  <Typography
-                    color={colors.greenAccent[500]}
-                    variant="h5"
-                    fontWeight="600"
-                  >
-                    {stock}
-                  </Typography>
-                </Box>
-
-
-
-                <Box 
-                  backgroundColor={colors.greenAccent[500]}
-                  p="2px 5px"
-                  borderRadius="4px"
-                >
-                {stockPrices[stock]}
-                </Box> 
-
-              
-
-                <Box 
-                color={colors.grey[100]}>
-
-                  <Typography
-                    color={parseFloat(percentageChange[stock]) >= 0 ? colors.greenAccent[500] : colors.redAccent[500]}
-                    variant="body3"
-                    fontWeight="bold"
-                  >
-                    {percentageChange[stock] !== null && percentageChange[stock] !== undefined ? (
-                      (parseFloat(percentageChange[stock]) > 0 ? "+" : "") +
-                      percentageChange[stock].toFixed(2) + "%"
-                    ) : "Loading..."}
-                  </Typography>
-                </Box>
-
+            {favourites.length === 0 ? (
+              <Box p="15px">
+                <Typography variant="h6" color="textPrimary">
+                  Nothing to display
+                </Typography>
               </Box>
-            ))}
+            ) : (
+              favourites.map((stock, i) => (
+                <Box
+                  key={`${stock}-${i}`}
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  borderBottom={`4px solid ${colors.primary[500]}`}
+                  p="15px"
+                >
+                  <Box>
+                    <Typography
+                      color={colors.greenAccent[500]}
+                      variant="h5"
+                      fontWeight="600"
+                    >
+                      {stock}
+                    </Typography>
+                  </Box>
+
+                  <Box 
+                    backgroundColor={colors.greenAccent[500]}
+                    p="2px 5px"
+                    borderRadius="4px"
+                  >
+                  {stockPrices[stock]}
+                  </Box> 
+
+                  <Box 
+                  color={colors.grey[100]}>
+
+                    <Typography
+                      color={parseFloat(percentageChange[stock]) >= 0 ? colors.greenAccent[500] : colors.redAccent[500]}
+                      variant="body3"
+                      fontWeight="bold"
+                    >
+                      {percentageChange[stock] !== null && percentageChange[stock] !== undefined ? (
+                        (parseFloat(percentageChange[stock]) > 0 ? "+" : "") +
+                        percentageChange[stock].toFixed(2) + "%"
+                      ) : "Loading..."}
+                    </Typography>
+                  </Box>
+                </Box>
+              ))
+            )}
           </Box>
 
           {/* Recent Transactions */}
@@ -633,54 +636,64 @@ const Dashboard = () => {
                 Recent Transactions
               </Typography>
             </Box>
-            {transactionData.map((transaction, i) => (
-              <Box
-                key={`${transaction.account}-${i}`}
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                borderBottom={`4px solid ${colors.primary[500]}`}
-                p="15px"
-              >
-                <Box>
-                  <Typography
-                    color={colors.greenAccent[500]}
-                    variant="h5"
-                    fontWeight="600"
-                  >
-                    {transaction.order === 'WAITING' ? (
-                      `${transaction.stockSymbol} (LIMIT - $${transaction.limitPrice})`
-                    ) : (
-                      `${transaction.stockSymbol} ($${transaction.pricePerUnit.toFixed(2)})`
-                    )}
-                  </Typography>
-                  <Typography color={colors.grey[100]}>
-                  {transaction.order === 'WAITING' ? (
-                    transaction.action === 'buy' ? `WAITING (Buy - ${transaction.unitsBoughtInTransaction} units)` : `WAITING (Sell - ${transaction.unitsSoldInTransaction} units)`
-                  ) : (
-                    transaction.action === 'buy'
-                      ? `Bought - ${transaction.unitsBoughtInTransaction} units`
-                      : `Sold - ${transaction.unitsSoldInTransaction} units`
-                  )}
-                  </Typography>
-                </Box>
 
-                <Box color={colors.grey[100]}>{transaction.date}</Box>
-                
-                <Box backgroundColor={colors.greenAccent[500]}
-                  p="2px 5px"
-                  borderRadius="4px"
-                >
-                {transaction.order === 'WAITING' ? (
-                    <button onClick={() => cancelOrder(transaction)}>Cancel order</button>
-                  ) : transaction.action === 'buy' ? (
-                    `Expenditure: $${transaction.expenditureOfTransaction}`
-                  ) : (
-                    `Returns: $${transaction.returnsFromTransaction}`
-                  )}
-                </Box>
+            {transactionData.length === 0 ? (
+              <Box p="15px">
+                <Typography variant="h6" color="textPrimary">
+                  Nothing to display
+                </Typography>
               </Box>
-            ))}
+            ) : (
+            
+              transactionData.map((transaction, i) => (
+                <Box
+                  key={`${transaction.account}-${i}`}
+                  display="flex"
+                  justifyContent="space-between"
+                  alignItems="center"
+                  borderBottom={`4px solid ${colors.primary[500]}`}
+                  p="15px"
+                >
+                  <Box>
+                    <Typography
+                      color={colors.greenAccent[500]}
+                      variant="h5"
+                      fontWeight="600"
+                    >
+                      {transaction.order === 'WAITING' ? (
+                        `${transaction.stockSymbol} (LIMIT - $${transaction.limitPrice})`
+                      ) : (
+                        `${transaction.stockSymbol} ($${transaction.pricePerUnit.toFixed(2)})`
+                      )}
+                    </Typography>
+                    <Typography color={colors.grey[100]}>
+                    {transaction.order === 'WAITING' ? (
+                      transaction.action === 'buy' ? `WAITING (Buy - ${transaction.unitsBoughtInTransaction} units)` : `WAITING (Sell - ${transaction.unitsSoldInTransaction} units)`
+                    ) : (
+                      transaction.action === 'buy'
+                        ? `Bought - ${transaction.unitsBoughtInTransaction} units`
+                        : `Sold - ${transaction.unitsSoldInTransaction} units`
+                    )}
+                    </Typography>
+                  </Box>
+
+                  <Box color={colors.grey[100]}>{transaction.date}</Box>
+                  
+                  <Box backgroundColor={colors.greenAccent[500]}
+                    p="2px 5px"
+                    borderRadius="4px"
+                  >
+                  {transaction.order === 'WAITING' ? (
+                      <button onClick={() => cancelOrder(transaction)}>Cancel order</button>
+                    ) : transaction.action === 'buy' ? (
+                      `Expenditure: $${transaction.expenditureOfTransaction}`
+                    ) : (
+                      `Returns: $${transaction.returnsFromTransaction}`
+                    )}
+                  </Box>
+                </Box>
+              ))
+            )}
           </Box>
         </Box>
       </Box>
