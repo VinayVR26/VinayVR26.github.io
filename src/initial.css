@@ -73,9 +73,11 @@
 .initial-stage-container .gender-container {
   font-weight: bold;
   font-size:small;
-  color: #000;
 }
 
+.initial-stage-container .gender-container Form.Label {
+  color: #000; /* Make only the label black */
+}
 
 /* Style for elements inside the 'g-btn' class within 'initial-stage' div */
 .initial-stage-container .g-btn > div,
