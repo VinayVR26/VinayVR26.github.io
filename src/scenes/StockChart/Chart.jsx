@@ -30,8 +30,10 @@ const Chart = ({ filter, setFilter }) => {
   const getDateRange = () => {
     const { days, weeks, months, years } = chartConfig[filter];
     const now = new Date();
-    if (now.getDay() === 0 || now.getDay() === 1) {
+    if (now.getDay() === 0) {
       chartConfig[filter].days = 2;
+    } else if (now.getDay() === 1) {
+      chartConfig[filter].days = 3;
     }
 
     const endDate = new Date();
