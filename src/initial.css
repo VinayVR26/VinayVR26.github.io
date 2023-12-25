@@ -79,6 +79,14 @@
   color: #000;
 }
 
+.initial-stage-container .small-padding {
+  padding: 0.01rem;
+}
+
+.initial-stage-container .username-in-use {
+  font-size: large;
+}
+
 /* Style for elements inside the 'g-btn' class within 'initial-stage' div */
 .initial-stage-container .g-btn > div,
 .initial-stage-container .g-btn > div > svg {

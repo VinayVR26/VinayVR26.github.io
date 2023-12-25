@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useUserAuth } from "../../context/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import { db } from "../Firebase/firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 
 const CreateProfile = () => {
   const { user } = useUserAuth();
@@ -13,6 +13,28 @@ const CreateProfile = () => {
   const [lastName, setLastName] = useState("");
   const [gender, setGender] = useState("male");
   const [error, setError] = useState("");
+  const [isUsernameUsed, setIsUsernameUsed] = useState(false);
+
+  useEffect(() => {
+    const checkUsername = async () => {
+      const usernameDocRef = doc(db, "usernames", "usernameList");
+      const usernameDoc = await getDoc(usernameDocRef);
+
+      if (usernameDoc.exists()) {
+        const usernameList = usernameDoc.data().usernames;
+        const isUsed = usernameList.includes(username);
+        setIsUsernameUsed(isUsed);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      if (username.trim() !== "") {
+        checkUsername();
+      }
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [username]);
 
   const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -22,6 +44,10 @@ const CreateProfile = () => {
     e.preventDefault();
 
     try {
+      setError("");
+      if (isUsernameUsed) {
+        return;
+      }
       const capitalizedFirstName = capitalizeFirstLetter(firstName);
       const capitalizedLastName = capitalizeFirstLetter(lastName);
 
@@ -35,6 +61,20 @@ const CreateProfile = () => {
         fundsForTrading: 10000,
       });
 
+      const usernameListDocRef = doc(db, "usernames", "usernameList");
+      const usernameListDoc = await getDoc(usernameListDocRef);
+
+      if (usernameListDoc.exists()) {
+        const currentUsernameList = usernameListDoc.data().usernames;
+  
+        if (!currentUsernameList.includes(username)) {
+          const updatedUsernameList = [...currentUsernameList, username];
+          await updateDoc(usernameListDocRef, {
+            usernames: updatedUsernameList,
+          });
+        }
+      }
+
       navigate("/dashboard");
     } catch (err) {
       setError("An error occurred while creating the profile");
@@ -44,7 +84,7 @@ const CreateProfile = () => {
   return (
     <>
       <div className="p-4 box">
-        <h2 className="mb-3">Create your Profile</h2>
+        <h2>Create your Profile</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleCreateProfile}>
           <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -54,6 +94,9 @@ const CreateProfile = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
+            {isUsernameUsed && (
+              <Alert variant="danger" className="small-padding"><div className="username-in-use">Username is in use</div></Alert>
+            )}
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicFirstName">
             <Form.Control
@@ -71,7 +114,7 @@ const CreateProfile = () => {
               onChange={(e) => setLastName(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="gender-container" controlId="formBasicGender">
+          <Form.Group className="mb-3" controlId="formBasicGender">
             <Form.Label>Gender:</Form.Label>
             <Form.Control
               as="select"
