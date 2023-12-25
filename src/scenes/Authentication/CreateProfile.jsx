@@ -84,7 +84,7 @@ const CreateProfile = () => {
   return (
     <>
       <div className="p-4 box">
-        <h2>Create your Profile</h2>
+        <h2 className="mb-3">Create your Profile</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleCreateProfile}>
           <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -114,7 +114,7 @@ const CreateProfile = () => {
               onChange={(e) => setLastName(e.target.value)}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicGender">
+          <Form.Group className="gender-container" controlId="formBasicGender">
             <Form.Label>Gender:</Form.Label>
             <Form.Control
               as="select"
