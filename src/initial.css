@@ -13,13 +13,13 @@
 /* Media query for smaller screens */
 @media (max-width: 767px) {
   .initial-stage-container {
-    padding: 20px;
-    width: auto;
+    padding: 20px !important;
+    width: auto !important;
   }
 
   .initial-stage-container .box {
-    width: 80%;
-    max-width: 400px;
+    width: 80% !important;
+    max-width: 400px !important;
   }
 
   .initial-stage-container .o-btn,
@@ -28,7 +28,7 @@
   }
 
   .initial-stage-container .mb-3 {
-    font-size: large;
+    font-size: large !important;
   }
 }
 
