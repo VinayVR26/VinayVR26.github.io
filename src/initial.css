@@ -10,28 +10,6 @@
 
 /* Style for elements with the 'box' class inside the 'initial-stage' div */
 
-/* Media query for smaller screens */
-@media (max-width: 767px) {
-  .initial-stage-container {
-    padding: 20px !important;
-    width: auto !important;
-  }
-
-  .initial-stage-container .box {
-    width: 80% !important;
-    max-width: 400px !important;
-  }
-
-  .initial-stage-container .o-btn,
-  .initial-stage-container .g-btn {
-    font-size: 18px !important;
-  }
-
-  .initial-stage-container .mb-3 {
-    font-size: large !important;
-  }
-}
-
 .initial-stage-container .mb-3 {
   font-weight: bold;
 }
