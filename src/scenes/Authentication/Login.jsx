@@ -68,18 +68,15 @@ const Login = () => {
   }
 
   return (
-    <>
-      {/* Display the login form */}
+    <div className="container">
       <div className="p-4 box">
         <h2 className="mb-3">Welcome to Securities Trading</h2>
-        {/* Display any error message */}
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="email"
               placeholder="Email address"
-              // Update the email state when the input value changes
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -90,7 +87,6 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 value={password}
-                // Update the password state when the input value changes
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
@@ -103,7 +99,6 @@ const Login = () => {
             </div>
           </Form.Group>
 
-          {/* Submit button to log in using email/password */}
           <div className="d-grid gap-2">
             <Button className="o-btn" variant="primary" type="Submit">
               Log In
@@ -111,24 +106,22 @@ const Login = () => {
           </div>
         </Form>
         <hr />
-        {/* Google Sign-In button */}
         <div>
           <GoogleButton
             className="g-btn"
             type="dark"
-            // Call the handleGoogleSignIn function when the Google Sign-In button is clicked
             onClick={handleGoogleSignIn}
           />
         </div>
       </div>
-      {/* Link to the signup page */}
+
       <div className="p-4 box mt-3 text-center">
         Don't have an account? <Link to="/signup"><div className="clickableText">Sign up</div></Link>
       </div>
       <div className="p-4 box mt-3 text-center">
         Forgot your password? <Link to="/reset-password"><div className="clickableText">Reset password</div></Link>
       </div>
-    </>
+    </div>
   );
 };
 
