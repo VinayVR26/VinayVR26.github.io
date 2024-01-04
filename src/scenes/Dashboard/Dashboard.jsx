@@ -14,6 +14,7 @@ import StatBox from "./StatBox";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../Firebase/firebase";
 import _ from 'lodash';
+import { useMediaQuery } from "@mui/material";
 
 
 const Dashboard = () => {
@@ -39,6 +40,7 @@ const Dashboard = () => {
   const [mostNegative, setMostNegative] = useState({ symbol: "", change: 0 });
 
   const [ranOnce, setRanOnce] = useState(false);
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   
 
   const checkIfMarketIsOpen = () => {
@@ -264,7 +266,7 @@ const Dashboard = () => {
         
         <Box
           display="grid"
-          gridTemplateColumns="repeat(12, 1fr)"
+          gridTemplateColumns={`repeat(${isSmallScreen ? 12 : 12}, 1fr)`}
           gridAutoRows="140px"
           gap="20px"
         >
@@ -421,7 +423,7 @@ const Dashboard = () => {
 
           {/* Portfolio */}
           <Box
-            gridColumn="span 4"
+            gridColumn={isSmallScreen ? "span 12" : "span 4"}
             gridRow="span 2"
             backgroundColor={colors.primary[400]}
             padding="20px"
@@ -434,7 +436,7 @@ const Dashboard = () => {
             >
               Portfolio Breakdown
             </Typography>
-            <Box height="280px" width="450px">
+            <Box height={isSmallScreen ? "auto" : "280px"} width="100%">
               <PortfolioPieChart />
             </Box>
           </Box>
