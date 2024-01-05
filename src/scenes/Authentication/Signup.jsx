@@ -46,7 +46,7 @@ const Signup = () => {
   return (
     <>
         <div className="p-4 box">
-          <h2 className="mb-3">Firebase Auth Signup</h2>
+          <h2 className="mb-3">Create Your Account!</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {showSuccess && <Alert variant="success">Sign up successful! Please check your email for the verification link.</Alert>}
           <Form onSubmit={handleSignUp}>
