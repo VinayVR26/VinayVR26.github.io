@@ -116,7 +116,6 @@ const Login = () => {
           <GoogleButton
             className="g-btn"
             type="dark"
-            // Call the handleGoogleSignIn function when the Google Sign-In button is clicked
             onClick={handleGoogleSignIn}
           />
         </div>

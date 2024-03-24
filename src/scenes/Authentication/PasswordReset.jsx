@@ -37,8 +37,8 @@ const PasswordReset = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
-        <div className="reset-password-container">
-        <Button variant="primary" type="submit">
+        <div className="d-grid gap-2">
+        <Button className="o-btn" variant="primary" type="submit">
           Reset Password
         </Button>
         </div>
