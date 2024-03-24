@@ -3,7 +3,7 @@ const websocketPath = "wss://ws.finnhub.io";
 const baseHistoricalDataPath = "https://api.marketdata.app/v1/stocks/candles";
 
 export const searchSymbol = async (query) => {
-  const url = `${basePath}/search?q=${query}&token=${process.env.FINNHUB_API_KEY}`;
+  const url = `${basePath}/search?q=${query}&token=${process.env.REACT_APP_API_KEY}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -15,7 +15,7 @@ export const searchSymbol = async (query) => {
 };
 
 export const fetchStockDetails = async (stockSymbol) => {
-  const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${process.env.FINNHUB_API_KEY}`;
+  const url = `${basePath}/stock/profile2?symbol=${stockSymbol}&token=${process.env.REACT_APP_API_KEY}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -27,8 +27,9 @@ export const fetchStockDetails = async (stockSymbol) => {
 };
 
 export const fetchQuote = async (stockSymbol) => { 
-  const url = `${basePath}/quote?symbol=${stockSymbol}&token=${process.env.FINNHUB_API_KEY}`;
+  const url = `${basePath}/quote?symbol=${stockSymbol}&token=${process.env.REACT_APP_API_KEY}`;
   const response = await fetch(url);
+  //console.log("fetchQuote",url)
 
   if (!response.ok) {
     const message = `An error has occured: ${response.status}`;
@@ -39,7 +40,7 @@ export const fetchQuote = async (stockSymbol) => {
 };
 
 export const subscribeQuote = (stockSymbol) => {
-  const socket = new WebSocket(`${websocketPath}?token=${process.env.FINNHUB_API_KEY}`);
+  const socket = new WebSocket(`${websocketPath}?token=${process.env.REACT_APP_API_KEY}`);
 
   socket.onopen = () => {
     // Subscribe to the stock symbol for real-time updates
@@ -51,7 +52,7 @@ export const subscribeQuote = (stockSymbol) => {
 
 
 export const fetchStockNews = async (stockSymbol) => {
-  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${stockSymbol}&apikey=${process.env.ALPHAVANTAGE_API_KEY}`;
+  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${stockSymbol}&apikey=C8T27SI6MYVIZYBS`;
   console.log("URL", url)
   const response = await fetch(url);
   console.log("response", response)
@@ -74,7 +75,7 @@ export const fetchHistoricalData = async (
   from,
   to
 ) => {
-  const url = `${baseHistoricalDataPath}/${resolution}/${stockSymbol}/?from=${from}&to=${to}&token=${process.env.MARKETDATA_API_KEY}`;
+  const url = `${baseHistoricalDataPath}/${resolution}/${stockSymbol}/?from=${from}&to=${to}&token=WTVRLS1WekcySWxGVFEzSncyaXVZeHFoNzZGRnpfa3lZYVRXemc2OUk4dz0`;
   const response = await fetch(url);
   console.log("ITS HERE",response);
 
@@ -87,7 +88,7 @@ export const fetchHistoricalData = async (
 };
 
 export const fetchGeneralNews = async () => {
-  const url = `${basePath}/news?category=general&token=${process.env.FINNHUB_API_KEY}`;
+  const url = `${basePath}/news?category=general&token=${process.env.REACT_APP_API_KEY}`;
   console.log("generalNews", url)
   const response = await fetch(url);
 
@@ -111,7 +112,7 @@ export const fetchEarningsCalendar = async (
   
 ) => {
   console.log("STOCK SYMBOL", stockSymbol);
-  const url = `${basePath}/calendar/earnings?symbol=${stockSymbol}&token=${process.env.FINNHUB_API_KEY}`;
+  const url = `${basePath}/calendar/earnings?symbol=${stockSymbol}&token=${process.env.REACT_APP_API_KEY}`;
 
   console.log("earnings history url", url);
   const response = await fetch(url);
