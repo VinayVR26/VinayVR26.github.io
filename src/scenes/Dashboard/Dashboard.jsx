@@ -580,7 +580,7 @@ const Dashboard = () => {
                   borderBottom={`4px solid ${colors.primary[500]}`}
                   p="15px"
                 >
-                  <Box>
+                  <Box flex={1} display="flex" justifyContent="flex-start">
                     <Typography
                       color={colors.greenAccent[500]}
                       variant="h5"
@@ -590,29 +590,35 @@ const Dashboard = () => {
                     </Typography>
                   </Box>
 
-                  <Box 
-                    backgroundColor={colors.greenAccent[500]}
-                    p="2px 5px"
-                    borderRadius="4px"
-                  >
-                  {stockPrices[stock]}
-                  </Box> 
-
-                  <Box 
-                  color={colors.grey[100]}>
-
-                    <Typography
-                      color={parseFloat(percentageChange[stock]) >= 0 ? colors.greenAccent[500] : colors.redAccent[500]}
-                      variant="body3"
-                      fontWeight="bold"
+                  <Box flex={1} display="flex" justifyContent="center">
+                    <Box 
+                      width="80px"
+                      backgroundColor={colors.greenAccent[500]}
+                      p="2px 5px"
+                      borderRadius="4px"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
                     >
-                      {percentageChange[stock] !== null && percentageChange[stock] !== undefined ? (
-                        (parseFloat(percentageChange[stock]) > 0 ? "+" : "") +
-                        percentageChange[stock].toFixed(2) + "%"
-                      ) : "Loading..."}
+                    <Typography variant="h6" color={colors.grey[100]} fontWeight="600">
+                      {stockPrices[stock]}
                     </Typography>
+                    </Box> 
                   </Box>
+
+                  <Box flex={1} display="flex" justifyContent="flex-end">
+                  <Typography
+                    color={parseFloat(percentageChange[stock]) >= 0 ? colors.greenAccent[500] : colors.redAccent[500]}
+                    variant="h5"  // Changed from 'body3' as 'body2' is a valid variant
+                    fontWeight="bold"
+                  >
+                    {percentageChange[stock] !== null && percentageChange[stock] !== undefined ? (
+                      (parseFloat(percentageChange[stock]) > 0 ? "+" : "") +
+                      percentageChange[stock].toFixed(2) + "%"
+                    ) : "Loading..."}
+                  </Typography>
                 </Box>
+              </Box>
               ))
             )}
           </Box>
