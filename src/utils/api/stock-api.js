@@ -75,7 +75,7 @@ export const fetchHistoricalData = async (
   from,
   to
 ) => {
-  const url = `${baseHistoricalDataPath}/${resolution}/${stockSymbol}/?from=${from}&to=${to}&token=a1lMb1ZJQTRhZ0lYd1ZVcDA4T0hjVmpsUEhkMTBkOFdUQnBxV0VKQjlVVT0`;
+  const url = `${baseHistoricalDataPath}/${resolution}/${stockSymbol}/?from=${from}&to=${to}&token=REo0aGUyTGhINjZFQU11SktoWXFiZVRMUDU4Z0lrdE1xOWpKbDNCYTdKND0`;
   const response = await fetch(url);
   console.log("ITS HERE",response);
 
