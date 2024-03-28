@@ -52,7 +52,7 @@ export const subscribeQuote = (stockSymbol) => {
 
 
 export const fetchStockNews = async (stockSymbol) => {
-  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${stockSymbol}&apikey=C8T27SI6MYVIZYBS`;
+  const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${stockSymbol}&apikey=Z97VYJB4D0NF8NS9`;
   console.log("URL", url)
   const response = await fetch(url);
   console.log("response", response)
@@ -75,7 +75,7 @@ export const fetchHistoricalData = async (
   from,
   to
 ) => {
-  const url = `${baseHistoricalDataPath}/${resolution}/${stockSymbol}/?from=${from}&to=${to}&token=WTVRLS1WekcySWxGVFEzSncyaXVZeHFoNzZGRnpfa3lZYVRXemc2OUk4dz0`;
+  const url = `${baseHistoricalDataPath}/${resolution}/${stockSymbol}/?from=${from}&to=${to}&token=a1lMb1ZJQTRhZ0lYd1ZVcDA4T0hjVmpsUEhkMTBkOFdUQnBxV0VKQjlVVT0`;
   const response = await fetch(url);
   console.log("ITS HERE",response);
 
