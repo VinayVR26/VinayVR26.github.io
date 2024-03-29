@@ -659,8 +659,9 @@ const Dashboard = () => {
                   alignItems="center"
                   borderBottom={`4px solid ${colors.primary[500]}`}
                   p="15px"
+                  flexWrap="wrap"
                 >
-                  <Box>
+                  <Box flex="1" min-width="0">
                     <Typography
                       color={colors.greenAccent[500]}
                       variant="h5"
@@ -673,19 +674,31 @@ const Dashboard = () => {
                       )}
                     </Typography>
                     <Typography color={colors.grey[100]}>
-                    {transaction.order === 'WAITING' ? (
-                      transaction.action === 'buy' ? `WAITING (Buy - ${transaction.unitsBoughtInTransaction} units)` : `WAITING (Sell - ${transaction.unitsSoldInTransaction} units)`
-                    ) : (
-                      transaction.action === 'buy'
-                        ? `Bought - ${transaction.unitsBoughtInTransaction} units`
-                        : `Sold - ${transaction.unitsSoldInTransaction} units`
-                    )}
+                      {transaction.order === 'WAITING' ? (
+                        `${transaction.action.toUpperCase()} (${transaction.unitsBoughtInTransaction} ${transaction.unitsBoughtInTransaction > 1 ? 'units' : 'unit'})`
+                      ) : (
+                        `${transaction.action.charAt(0).toUpperCase() + transaction.action.slice(1)} - ${transaction.unitsBoughtInTransaction || transaction.unitsSoldInTransaction} ${transaction.unitsBoughtInTransaction === 1 || transaction.unitsSoldInTransaction === 1 ? 'unit' : 'units'}`
+                      )}
                     </Typography>
                   </Box>
 
-                  <Box color={colors.grey[100]}>{transaction.date}</Box>
+                  <Box
+                     flex="0 1 auto"
+                     mx="auto"
+                     mr="120px"
+                     alignSelf="center"
+                     color={colors.grey[100]}
+                  >
+                    {transaction.date}
+                  </Box>
                   
-                  <Box backgroundColor={colors.greenAccent[500]}
+                  
+                  <Box
+                    flex="0 0 150px"
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                    backgroundColor={colors.greenAccent[500]}
                     p="2px 5px"
                     borderRadius="4px"
                   >
